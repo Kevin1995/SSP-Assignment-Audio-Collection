@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 
 var index = require('./routes/index');
-var users = require('./routes/users');
+var login = require('./routes/login');
 
 var app = express();
 
@@ -25,7 +25,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/users', users);
+app.use('/login', login);
 
 var expressSessionOptions = {
   secret:'mySecret',

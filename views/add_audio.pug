@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+
+  form(action='/name_of_playlist')
+        | Name: 
+        input(type='text', name='nameOfSong')
+        br
+        |   Soundcloud Link: 
+        input(type='password', name='soundcloudLink')
+        br
+        input(type='submit', value='Add')
+        input(type='submit', value='Cancel')

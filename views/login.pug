@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+
+  form(action='/playlists')
+        | Username: 
+        input(type='text', name='username')
+        br
+        |   Password: 
+        input(type='password', name='password')
+        br
+        input(type='submit', value='Login')
