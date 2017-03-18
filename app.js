@@ -31,8 +31,20 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+var loggedIn = function(req, res, next) {
+  // Be sure to let the user get to /login without having req.session.username
+  // set, otherwise they would never be able to set it
+  if ((!req.session.username)) {
+    res.redirect('/login');
+  }
+  else {
+    next();
+  }
+};
+
 app.use('/', index);
 app.use('/users', users);
+app.use('/users', loggedIn);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
