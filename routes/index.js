@@ -9,25 +9,62 @@ var dbConnectionInfo = {
   database : 'audio_collections'
 };
 
-router.get('/playlists', function(req, res, next) {
-  res.render('playlists', { title: 'Playlists' });  
-});
-
-router.get('/new_playlist', function(req, res, next) {
-  res.render('add_playlist', { title: 'Add new Playlist' });  
-});
-
-router.get('/name_of_playlist', function(req, res, next) {
-  res.render('playlist_name', { title: 'playlist_name' });  
-});
-
-router.get('/add_audio_file', function(req, res, next) {
-  res.render('add_audio', { title: 'Add Audio Page' });  
-});
-
 /* GET home page. */
+router.get('/login', function(req, res, next) {
+  res.render('login');
+});
+
+router.post('/login', function(req, res, next) {
+  var username = req.body.username;
+  
+  username = username.trim();
+  
+  if (username.length == 0) {
+    res.redirect('/login');
+  }
+  else {
+    req.session.username = username;
+    res.redirect('/');
+  }
+});
+
 router.get('/', function(req, res, next) {
-  res.render('login', { title: 'Login' });
+  var dbConnection = mysql.createConnection(dbConnectionInfo);
+  dbConnection.connect();
+
+  dbConnection.on('error', function(err) {
+    if (err.code == 'PROTOCOL_SEQUENCE_TIMEOUT') {
+      // Let's just ignore this
+      console.log('Got a DB PROTOCOL_SEQUENCE_TIMEOUT Error ... ignoring ');
+    } else {
+      // I really should do something better here
+      console.log('Got a DB Error: ', err);
+    }
+  });
+
+  dbConnection.query('SELECT * FROM Playlists', function(err, results, fields){
+    if (err) {
+      throw err;
+    }
+
+    var allPlaylists = new Array();
+
+    for (var i=0; i<results.length; i++) {
+      var playlist = {};
+      playlist.id = results[i].id;
+      playlist.text = results[i].text;
+      playlist.date = new Date(results[i].date);
+
+      console.log(JSON.stringify(playlist));
+
+      allPlaylists.push(playlist);
+    }
+   
+    dbConnection.end();
+
+    res.render('playlists', {playlists: allPlaylists});
+  });
+
 });
 
 module.exports = router;
