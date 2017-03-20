@@ -8,8 +8,7 @@ block content
    br
    a(href='/users/createPlaylist') Create a new Playlists
    br
+   a(href='/users/playlistCreated') test 
 
    for playlist, i in playlists
-      p 
-      small #{new Date(playlist.date).toLocaleDateString()}
-      p #{playlist.text}
+    a(href='/users/playlistCreated') #{playlist.text}

@@ -1,0 +1,10 @@
+extends layout
+
+block content
+
+    form(method='POST', action='/users/newSongAdded')
+      label(for='theSong') Name of Song
+      br
+      textarea(name='theSong')
+      br
+      input(type='submit', name='Add new Song')

@@ -1,11 +1,10 @@
 extends layout
 
 block content
-    - var playlistText = ''
 
     form(method='POST', action='/users/newPlaylist')
       label(for='thePlaylist') Name of Playlist
       br
-      textarea(type='text' name='thePlaylist') #{playlistText}
+      textarea(name='thePlaylist')
       br
       input(type='submit', name='Add new Playlist')
