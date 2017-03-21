@@ -40,10 +40,12 @@ router.post('/newPlaylist', function(req, res, next) {
     }
   });
 
-  var playlist = {};
-  playlist.text = req.body.thePlaylist;
+  var playlist = {
+    text:  req.body.thePlaylist
+  };
+  
 
-  dbConnection.query('INSERT INTO Playlists (playlist_name) VALUES(?)',[playlist.text], function(err, results,fields) {
+  dbConnection.query('INSERT INTO Playlists (playlist_name) VALUES(?)',[playlist.text], function(err, results, fields) {
     // error will be an Error if one occurred during the query
     // results will contain the results of the query
     // fields will contain information about the returned results fields (if any)
@@ -79,8 +81,9 @@ router.post('/newPlaylist', function(req, res, next) {
     }
   });
 
-  var song = {};
-  song.text = req.body.theSong;
+  var song = {
+    text: req.body.theSong
+  };
 
   dbConnection.query('INSERT INTO Songs (song_name) VALUES(?)',[song.text], function(err, results,fields) {
     // error will be an Error if one occurred during the query

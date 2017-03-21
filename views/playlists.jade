@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+
+   h1 My Playlists
+   br
+   a(href='/users/createPlaylist') Create a new Playlists
+   br
+   a(href='/users/playlistCreated') test
+   br
+
+   for playlist, i in playlists
+    a(href='/users/playlistCreated') #{playlist.text}
+    br
