@@ -6,11 +6,11 @@ block content
 
    h1 My Playlists
    br
+   a(href='/login') Login
+   br
    a(href='/users/createPlaylist') Create a new Playlists
    br
-   a(href='/users/playlistCreated') test
-   br
 
-   for playlist, i in playlists
-    a(href='/users/playlistCreated') #{playlist.text}
+   for playlist in playlists
+    a(href='/users/playlistCreated' ) #{playlist.playlist_name} #{playlist.playlist_id}
     br

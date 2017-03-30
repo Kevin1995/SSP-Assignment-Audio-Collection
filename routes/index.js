@@ -47,21 +47,21 @@ router.get('/', function(req, res, next) {
       throw err;
     }
 
-    var allPlaylists = new Array();
+    var allPlaylists = results;
 
-    for (var i = 0; i < results.length; i++) {
-      var playlist = {
-        id: results[i].id,
-        text: results[i].text
-      };
+    // for (var i = 0; i < results.length; i++) {
+    //   var playlist = {
+    //     id: results[i].id,
+    //     text: results[i].text
+    //   };
 
-      console.log(JSON.stringify(playlist));
+    //   console.log(JSON.stringify(playlist));
 
-      allPlaylists.push(playlist);
-    }
+    //   allPlaylists.push(playlist);
+    // }
    
     dbConnection.end();
-
+    // res.send({results});
     res.render('playlists', {playlists: allPlaylists});
   });
 
@@ -84,17 +84,18 @@ router.get('/', function(req, res, next) {
         throw err;
       }
 
-      var allSongs = new Array();
+      var allSongs = results;
 
-      for (var i = 0; i < results.length; i++) {
-        var song = {};
-        song.id = results[i].id;
-        song.text = results[i].text;
+      // for (var i = 0; i < results.length; i++) {
+      //   var song = {};
+      //   song.id = results[i].id;
+      //   song.text = results[i].text;
+      //   song.url = results[i].url;
 
-        console.log(JSON.stringify(song));
+      //   console.log(JSON.stringify(song));
 
-        allSongs.push(song);
-      }
+      //   allSongs.push(song);
+      // }
    
       dbConnection.end();
 

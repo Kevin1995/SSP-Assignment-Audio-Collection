@@ -3,8 +3,11 @@ extends layout
 block content
 
     form(method='POST', action='/users/newPlaylist')
-      label Name of Playlist
-      br
-      textarea(name='thePlaylist')
-      br
-      input(type='submit', name='Add new Playlist')
+      div
+        label(for='thePlaylist') Name of Playlist
+        div
+          textarea(type='text', name='thePlaylist')
+          br
+          input(type='submit', name='Add new Playlist')
+    
+    a(href='/') Cancel

@@ -6,6 +6,12 @@ block content
 
   a(href='/users/newSong') Add song to Playlist
   br
+  a(href='/') Playlists
+  br
+  a(href='/') Login
+  br
 
-  for song, i in songs
-    a(href='/users/songCreated') #{song.text}
+  for song in songs
+    h3 #{song.song_name}
+    br
+    a(href='/users/songCreated') #{song.song_url}
