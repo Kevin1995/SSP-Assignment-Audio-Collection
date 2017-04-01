@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+
+  form(method='POST', action='/register')
+    label(for='username') Username
+    input(type='text', name='username', placeholder='Username')
+    br
+    label(for='password') Password
+    input(type='password', name='password', placeholder='Password')
+    br
+    button(type='submit') Register

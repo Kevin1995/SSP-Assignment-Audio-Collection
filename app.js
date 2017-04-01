@@ -11,6 +11,7 @@ var users = require('./routes/users');
 var app = express();
 
 var session = require('express-session');
+var mysql = require('mysql');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -22,6 +23,19 @@ var expressSessionOptions = {
   saveUninitialized: false
 }
 app.use(session(expressSessionOptions));
+
+var dbConnectionInfo = {
+  host : 'eu-cdbr-azure-west-d.cloudapp.net',
+  user : 'b921d0b7f353bc',
+  password : 'd05fc196',
+  database : 'audio_collections'
+};
+
+var pool  = mysql.createPool(dbConnectionInfo);
+
+// Store the pool object on the express app so I can retrieve it
+// from the "route files".
+app.set('dbPool', pool);
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
