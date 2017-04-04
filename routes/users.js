@@ -105,7 +105,7 @@ router.post('/newSongAdded', function(req, res, next) {
     dbConnection.end();
 
 
-    res.redirect('/users/playlistCreated');
+    res.redirect('/');
   });
 
 });

@@ -55,7 +55,9 @@ router.get('/', function(req, res, next) {
   });
 });
 
-router.get('/users/playlistCreated', function(req, res, next) {   
+router.get('/users/playlistCreated', function(req, res, next) {
+    var playlist_value = req.query.id;
+
     var dbConnection = mysql.createConnection(dbConnectionInfo);
     dbConnection.connect();
 
@@ -69,7 +71,7 @@ router.get('/users/playlistCreated', function(req, res, next) {
       }
     });
 
-    dbConnection.query('SELECT * FROM Songs', function(err, results, fields){
+    dbConnection.query('SELECT * FROM Songs WHERE playlist_id=?',[playlist_value] , function(err, results, fields){
       if (err) {
         throw err;
       }
