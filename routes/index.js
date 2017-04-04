@@ -55,7 +55,7 @@ router.get('/', function(req, res, next) {
   });
 });
 
-router.get('/users/playlistCreated', function(req, res, next) {
+router.get('/users/playlistCreated', function(req, res, next) {   
     var dbConnection = mysql.createConnection(dbConnectionInfo);
     dbConnection.connect();
 
@@ -89,7 +89,10 @@ router.get('/users/playlistCreated', function(req, res, next) {
    
       dbConnection.end();
 
-      res.render('name_of_created_playlist', {songs: allSongs});
+      var hoho = req.query.id;
+      console.log(hoho);
+
+      res.render('name_of_created_playlist', {songs: allSongs, playlist_query: req.query.id});
   });
 });
 

@@ -4,14 +4,15 @@ block content
   h1= title
   p Welcome to #{title}
 
-  a(href='/users/newSong') Add song to Playlist
+  a(href='/users/newSong?id=#{playlist_query}') Add song to Playlist
   br
   a(href='/') Playlists
   br
   a(href='/login') Login
   br
+  h3 #{playlist_query}
 
   for song in songs
     h3 #{song.song_name}
     br
-    a(href='/users/songCreated') #{song.song_url}
+    a(href='/users/songCreated?id=#{song.song_id}') #{song.song_url}

@@ -17,12 +17,12 @@ router.get('/playlistCreated', function(req, res, next) {
   res.render('name_of_created_playlist');
 });
 
-router.get('/songCreated', function(req, res, next) {
-  res.render('song_page');
+router.get('/newSong', function(req, res, next) {
+  res.render('new_song', {playlistNum: req.query.id});
 });
 
-router.get('/newSong', function(req, res, next) {
-  res.render('new_song');
+router.get('/songCreated', function(req, res, next) {
+  res.render('song_page');
 });
 
 router.post('/newPlaylist', function(req, res, next) {
@@ -82,11 +82,12 @@ router.post('/newSongAdded', function(req, res, next) {
   });
 
   var song = {
+    playlist_id: req.body.p_id,
     text: req.body.theSong,
     url: req.body.theSongURL
   };
 
-  dbConnection.query('INSERT INTO Songs (song_name, song_url) VALUES(?,?)',[song.text, song.url], function(err, results,fields) {
+  dbConnection.query('INSERT INTO Songs (playlist_id, song_name, song_url) VALUES(?,?,?)',[song.playlist_id, song.text, song.url], function(err, results,fields) {
     // error will be an Error if one occurred during the query
     // results will contain the results of the query
     // fields will contain information about the returned results fields (if any)
