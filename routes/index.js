@@ -10,14 +10,14 @@ var dbConnectionInfo = {
 };
 
 /* GET home page. */
-router.get('/login', function(req, res, next) {
+router.get('/', function(req, res, next) {
   var userMessage = req.session.userMessage ? req.session.userMessage : "";
   req.session.userMessage = "";
 
   res.render('login', { msg: userMessage });
 });
 
-router.get('/', function(req, res, next) {
+router.get('/playlists', function(req, res, next) {
   var dbConnection = mysql.createConnection(dbConnectionInfo);
   dbConnection.connect();
 
@@ -100,7 +100,7 @@ router.get('/users/playlistCreated', function(req, res, next) {
 
 router.get('/logout', function(req, res, next) {
   req.session.destroy()
-  res.redirect('/login');
+  res.redirect('/');
 });
 
 router.post('/login', function(req, res, next) {
@@ -144,16 +144,16 @@ router.post('/login', function(req, res, next) {
         req.session.username = uname;
         req.session.userID = results.insertId;
 
-        res.redirect('/');
+        res.redirect('/playlists');
       }
       else if ((results.length != 0)  && (pwd != results[0].password)) {
         console.log('incorrect password');
         req.session.userMessage = "Incorrect password";
-        res.redirect('/login');
+        res.redirect('/');
       }
       else {
         req.session.userMessage = uname + " is not a registered username. Maybe you need to register first!";
-        res.redirect('/login');
+        res.redirect('/');
       }
     });
   });
@@ -201,7 +201,7 @@ router.post('/register', function(req, res, next) {
       req.session.username = uname;
       req.session.userID = results.insertId;
 
-      res.redirect('/login');
+      res.redirect('/');
     });
   });
 });

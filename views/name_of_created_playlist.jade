@@ -6,13 +6,13 @@ block content
 
   a(href='/users/newSong?id=#{playlist_query}') Add song to Playlist
   br
-  a(href='/') Playlists
+  a(href='/playlists') Playlists
   br
-  a(href='/login') Login
+  a(href='/logout') Logout
   br
   h3 #{playlist_query}
 
   for song in songs
     h3 #{song.song_name}
     br
-    a(href='/users/songCreated?id=#{song.song_id}') #{song.song_url}
+    a(href='/users/songCreated?id=#{song.song_id}&url=#{song.song_url}') #{song.song_url}

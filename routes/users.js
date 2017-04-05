@@ -22,7 +22,7 @@ router.get('/newSong', function(req, res, next) {
 });
 
 router.get('/songCreated', function(req, res, next) {
-  res.render('song_page');
+  res.render('song_page', {song_url: req.query.url});
 });
 
 router.post('/newPlaylist', function(req, res, next) {
@@ -62,7 +62,7 @@ router.post('/newPlaylist', function(req, res, next) {
     // Close the connection and make sure you do it BEFORE you redirect
     dbConnection.end();
 
-    res.redirect('/');
+    res.redirect('/playlists');
   });
 });
 
@@ -105,7 +105,7 @@ router.post('/newSongAdded', function(req, res, next) {
     dbConnection.end();
 
 
-    res.redirect('/');
+    res.redirect('/playlists');
   });
 
 });
