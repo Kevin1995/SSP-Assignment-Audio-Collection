@@ -18,6 +18,11 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/playlists', function(req, res, next) {
+  var userMessage = req.session.userMessage ? req.session.userMessage : "";
+  req.session.userMessage = "";
+
+  var playlist_value = userMessage;
+
   var dbConnection = mysql.createConnection(dbConnectionInfo);
   dbConnection.connect();
 
@@ -31,7 +36,7 @@ router.get('/playlists', function(req, res, next) {
     }
   });
 
-  dbConnection.query('SELECT * FROM Playlists', function(err, results, fields){
+  dbConnection.query('SELECT * FROM Playlists WHERE username=?',[playlist_value], function(err, results, fields){
     if (err) {
       throw err;
     }
@@ -51,7 +56,7 @@ router.get('/playlists', function(req, res, next) {
    
     dbConnection.end();
     // res.send({results});
-    res.render('playlists', {playlists: allPlaylists});
+    res.render('playlists', {playlists: allPlaylists, username: userMessage});
   });
 });
 
@@ -143,6 +148,8 @@ router.post('/login', function(req, res, next) {
         console.log('Successful login');
         req.session.username = uname;
         req.session.userID = results.insertId;
+
+        req.session.userMessage = uname;
 
         res.redirect('/playlists');
       }

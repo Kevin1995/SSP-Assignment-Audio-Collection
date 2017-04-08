@@ -8,8 +8,9 @@ block content
    br
    a(href='/logout') Logout
    br
-   a(href='/users/createPlaylist') Create a new Playlists
+   a(href='/users/createPlaylist?username=#{username}') Create a new Playlists
    br
+   h3 #{username}
 
    for playlist in playlists
     a(href='/users/playlistCreated?id=#{playlist.playlist_id}') #{playlist.playlist_name}

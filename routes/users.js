@@ -10,7 +10,7 @@ var dbConnectionInfo = {
 };
 
 router.get('/createPlaylist', function(req, res, next) {
-  res.render('new_playlist');
+  res.render('new_playlist', {usernameOfPlaylist: req.query.username});
 });
 
 router.get('/playlistCreated', function(req, res, next) {
@@ -41,11 +41,12 @@ router.post('/newPlaylist', function(req, res, next) {
   });
 
   var playlist = {
+    usernamePlaylist: req.body.username_of_playlist,
     text:  req.body.thePlaylist
   };
   
 
-  dbConnection.query('INSERT INTO Playlists (playlist_name) VALUES(?)',[playlist.text], function(err, results, fields) {
+  dbConnection.query('INSERT INTO Playlists (username, playlist_name) VALUES(?, ?)',[playlist.usernamePlaylist ,playlist.text], function(err, results, fields) {
     // error will be an Error if one occurred during the query
     // results will contain the results of the query
     // fields will contain information about the returned results fields (if any)

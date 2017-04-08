@@ -8,6 +8,8 @@ block content
         div
           textarea(type='text', name='thePlaylist')
           br
+          input(type='hidden', name='username_of_playlist' value='#{usernameOfPlaylist}')
+          br
           input(type='submit', name='Add new Playlist')
     
     a(href='/playlists') Cancel
