@@ -10,7 +10,15 @@ block content
    br
    a(href='/users/createPlaylist?username=#{username}') Create a new Playlists
    br
-
-   for playlist in playlists
-    a(href='/users/playlistCreated?id=#{playlist.playlist_id}') #{playlist.playlist_name}
-    br
+  
+   div.container
+      div.row
+        for playlist in playlists
+          div.col-md-4.col-sm-6.portfolio-item
+            a.portfolio-link(href='/users/playlistCreated?id=#{playlist.playlist_id}')
+              div.portfolio-hover
+                div.portfolio-hover-content
+              img.img-responsive(src='images/report.png', alt='')
+              div.portfolio-caption
+                h4 #{playlist.playlist_name}
+                p.text-muted
