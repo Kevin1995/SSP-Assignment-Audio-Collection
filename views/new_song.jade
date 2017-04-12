@@ -2,6 +2,36 @@ extends layout
 
 block content
 
+  div.container
+        div.row
+            div.page-header
+                h2 New Song
+            form.form-horizontal(method='POST', action='/users/newSongAdded')
+                fieldset
+                    legend
+                        h3 Add a new song to your Playlist
+                    div.form-group
+                        label.col-md-1.control-label(for='theSong')
+                        div.col-md-12
+                            input#theSong.form-control.input-md(type='text', name='theSong', placeholder='Name of Song')
+
+                    div.form-group
+                      label.col-md-1.control-label(for='theSongURL')
+                      div.col-md-12
+                          input#theSongURL.form-control.input-md(name='theSongURL', type='text', placeholder='URL of Song')
+                    
+                    div.form-group
+                      label.col-md-1.control-label(for='p_id')
+                      div.col-md-12
+                          input#p_id.form-control.input-md(name='p_id', type='hidden', value='#{playlistNum}')
+                    
+                    div.form-group
+                      label.col-md-1.control-label(for='Add_new_Song')
+                      div.col-md-5
+                          button#Add_new_Song.btn.btn-block.btn-success(name='Add_new_Song', type='submit') Add new Song
+                      div.col-md-5
+                          a#playlists.btn.btn-block.btn-warning(href='/users/playlistCreated', name='playlists') Cancel
+
     form(method='POST', action='/users/newSongAdded')
       label(for='theSong') Name of Song
       br

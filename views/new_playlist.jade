@@ -2,14 +2,27 @@ extends layout
 
 block content
 
-    form(method='POST', action='/users/newPlaylist')
-      div
-        label(for='thePlaylist') Name of Playlist
-        div
-          textarea(type='text', name='thePlaylist')
-          br
-          input(type='hidden', name='username_of_playlist' value='#{usernameOfPlaylist}')
-          br
-          input(type='submit', name='Add new Playlist')
-    
-    a(href='/playlists') Cancel
+  div.container
+      div.row
+          div.page-header
+              h2 New Playlist
+          form.form-horizontal(method='POST', action='/users/newPlaylist')
+              fieldset
+                  legend
+                      h3 Create your new Playlist
+                  div.form-group
+                      label.col-md-1.control-label(for='thePlaylist')
+                      div.col-md-12
+                          input#thePlaylist.form-control.input-md(type='text', name='thePlaylist', placeholder='Name of Playlist')
+
+                  div.form-group
+                    label.col-md-1.control-label(for='username_of_playlist')
+                    div.col-md-12
+                        input#username_of_playlist.form-control.input-md(name='username_of_playlist', type='hidden', value='#{usernameOfPlaylist}')
+                  
+                  div.form-group
+                    label.col-md-1.control-label(for='Add_new_Playlist')
+                    div.col-md-5
+                        button#Add_new_Playlist.btn.btn-block.btn-success(name='Add_new_Playlist', type='submit') Add new Playlist
+                    div.col-md-5
+                        a#playlists.btn.btn-block.btn-warning(href='/playlists', name='playlists') Cancel

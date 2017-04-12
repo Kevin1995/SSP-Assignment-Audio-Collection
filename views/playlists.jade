@@ -6,19 +6,14 @@ block content
    h1 Welcome #{username}
    h3 Your Playlists
    br
-   a(href='/logout') Logout
+   a.btn.btn-block.btn-warning(href='/logout')
+    h4 Logout
    br
-   a(href='/users/createPlaylist?username=#{username}') Create a new Playlists
+   a.btn.btn-block.btn-warning(href='/users/createPlaylist?username=#{username}')
+    h4 Create new Playlists
    br
-  
-   div.container
-      div.row
-        for playlist in playlists
-          div.col-md-4.col-sm-6.portfolio-item
-            a.portfolio-link(href='/users/playlistCreated?id=#{playlist.playlist_id}')
-              div.portfolio-hover
-                div.portfolio-hover-content
-              img.img-responsive(src='images/report.png', alt='')
-              div.portfolio-caption
-                h4 #{playlist.playlist_name}
-                p.text-muted
+   
+   for playlist in playlists
+    a.btn.btn-block.btn-success(href='/users/playlistCreated?id=#{playlist.playlist_id}')
+      h4 #{playlist.playlist_name}
+    br

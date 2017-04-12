@@ -4,15 +4,17 @@ block content
   h1= title
   p Welcome to #{title}
 
-  a(href='/users/newSong?id=#{playlist_query}') Add song to Playlist
+  a.btn.btn-block.btn-success(href='/users/newSong?id=#{playlist_query}')
+    h4 Add song to Playlist
   br
-  a(href='/playlists') Playlists
+  a.btn.btn-block.btn-success(href='/playlists')
+    h4 Playlists
   br
-  a(href='/logout') Logout
+  a.btn.btn-block.btn-success(href='/logout')
+    h4 Logout
   br
-  h3 #{playlist_query}
 
   for song in songs
-    h3 #{song.song_name}
+    a.btn.btn-block.btn-success(href='/users/songCreated?id=#{song.song_id}&url=#{song.song_url}') 
+      h4 #{song.song_name}
     br
-    a(href='/users/songCreated?id=#{song.song_id}&url=#{song.song_url}') #{song.song_url}
