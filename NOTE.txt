@@ -1,0 +1,4 @@
+When you click cancel on adding a new playlist or song 
+I wasnt able to keep the users stuff there so if you
+cancel or add a playlist or song you must log out first to see
+the changes. 
